@@ -10,7 +10,7 @@ body  {
 }
 
 #centerText {
-    /*position: absolute;*/
+    
     left: calc(50% -30px);
     text-align: center;
     color: rgba(228, 228, 228, 0.658);

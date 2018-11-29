@@ -8,7 +8,7 @@ console.log(buttonShow)
   picture.style.visibility="visible";
   centerText.style.visibility="hidden";
   buttonShow.style.visibility="hidden";
-  body.style.visibility="hidden";
+
   })
 
 
