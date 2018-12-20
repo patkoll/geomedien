@@ -26,7 +26,7 @@ body  {
     
 }
 
-button {
+input {
     
     /*margin-top: 30px;*/
     padding: 5px 15px;
@@ -43,7 +43,7 @@ button {
     transition: ease-in-out all 300ms;
 }
 
-button:hover {
+input:hover {
     color: rgb(4, 238, 255);
     background-color: rgb(49, 48, 48);
     border-color: rgb(4, 238, 255);
