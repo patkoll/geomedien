@@ -4,6 +4,10 @@
 <meta charset='utf-8' />
 <title>Display a map</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+<script>
+    var bbox = turf.bbox(features);
+</script>
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js'></script>
 <script src='/mapbox.js/plugins/turf/v3.0.11/turf.min.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' />
