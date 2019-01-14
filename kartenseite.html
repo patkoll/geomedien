@@ -5,6 +5,7 @@
 <title>Display a map</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js'></script>
+<script src='/mapbox.js/plugins/turf/v3.0.11/turf.min.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' />
 <style>
     body { 
@@ -50,6 +51,8 @@ const data = {
 };
 </script>
 
+
+
 </head>
 <body>
 
@@ -67,7 +70,7 @@ const data = {
 
   map.on('load', function () {
     // Add a layer showing the places.
-   var spaeti_layer = map.addLayer({
+   map.addLayer({
         "id": "places",
         "type": "symbol",
         "source": {
@@ -130,6 +133,8 @@ const data = {
             .setLngLat(coordinates)
             .setHTML(description)
             .addTo(map);
+            //console.log("Markerlocation");
+            
     });
 
     // Change the cursor to a pointer when the mouse is over the places layer.
@@ -143,13 +148,22 @@ const data = {
     });
 
     map.on('click', function (e) {
-       //var coordinates = e.features[0].geometry.coordinates.slice();
-      //var description = e.features[0].properties.description;
+        
+    console.log(e.lngLat);
+    
+        
 
-        console.log(e.lngLat)
+        var freeCoordinate ={
+            longitude : e.lngLat.lng ,
+            latitude : e.lngLat.lat, 
+        }
+        console.log('Longitude'+freeCoordinate.longitude)
+        console.log('Latitude'+freeCoordinate.latitude)
 
+var spaetiFeatures = spaeti_layer.getGeoJSON();
 
-
+var nearestSpaeti = turf.nearest(e.layer.feature, spaetiFeatures);
+nearestSpaeti.properties["marker-size"] = "large";
   });
 
 });
