@@ -13,43 +13,36 @@ body  {
     
     left: calc(50% -30px);
     text-align: center;
-    color: rgba(228, 228, 228, 0.658);
-    text-shadow: 0 0 5px black;
-    /*box-shadow:  0px 0px 50px 
-    rgb(4, 238, 255, 1);*/
-    font-size: 100px;
+    color: rgb(0, 0, 0);
+    text-shadow: 0 0 15px rgb(4, 238, 255);
+    font-size: 6em;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
-#picture{
-    visibility: hidden;
-    
 }
 
 input {
     
-    /*margin-top: 30px;*/
-    padding: 5px 15px;
-    color: rgba(248, 244, 244, 0.815);
-    background-color: rgba(211, 211, 211, 0.288);
-   
-    border: solid 2.5px rgba(236, 244, 245, 0.781);
-    border-radius: 5px;
-
-    font-size: 16px;
-    font-family: sans-serif;
     
-
+    padding: 5px 15px;
+    color: rgba(238, 238, 238, 0.815);
+    background-color: rgba(211, 211, 211, 0.288);
+    border: solid 2.5px rgba(0, 0, 0, 0.781);
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: sans-serif;
     transition: ease-in-out all 300ms;
 }
 
+
+
 input:hover {
+    font-weight: bold;
     color: rgb(4, 238, 255);
     background-color: rgb(49, 48, 48);
     border-color: rgb(4, 238, 255);
 
     transform: translate(0px, -10px);
-
+    
     box-shadow:  0px 0px 50px 
     rgb(4, 238, 255, 1);
 }

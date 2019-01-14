@@ -1,0 +1,53 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-ide",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2018-12-11T10:30:02Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3830639606",
+        "addr:city": "Berlin",
+        "addr:country": "DE",
+        "addr:housenumber": "149",
+        "addr:postcode": "10365",
+        "addr:street": "Frankfurter Allee",
+        "addr:suburb": "Lichtenberg",
+        "contact:email": "info@gastro-meurer.de",
+        "contact:fax": "+49 30 92093605",
+        "contact:phone": "+49 30 92093600",
+        "contact:website": "http://www.gastro-meurer.de",
+        "name": "GASTRO Agentur Meurer",
+        "opening_hours": "Mo-Th 10:00-17:00, Fr 10:00-16:00",
+        "operator": "Gastro Agentur Hans & Thomas Meurer GbR",
+        "shop": "convenience",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.481254,
+          52.5135785
+        ]
+      },
+      "id": "node/3830639606"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4889866554",
+        "name": "Spätkauf",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4821132,
+          52.5131957
+        ]
+      },
+      "id": "node/4889866554"
+    }
+  ]
+}
