@@ -4,10 +4,6 @@
 <meta charset='utf-8' />
 <title>Display a map</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-<script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
-<script>
-    var bbox = turf.bbox(features);
-</script>
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js'></script>
 <script src='/mapbox.js/plugins/turf/v3.0.11/turf.min.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' />
@@ -28,7 +24,6 @@
         border: solid 10px rgba(49, 48, 48); 
         
     }
-
     .mapboxgl-popup {
         max-width: 400px;
         font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -71,7 +66,6 @@ const data = {
   center: [13.4821132,52.5131957],
   zoom: 16.6
   });
-
   map.on('load', function () {
     // Add a layer showing the places.
    map.addLayer({
@@ -117,22 +111,16 @@ const data = {
             "icon-allow-overlap": true
         }
     });
-
-
     
-
-
     map.on('click', 'places', function (e) {
         var coordinates = e.features[0].geometry.coordinates.slice();
         var description = e.features[0].properties.description;
-
         // Ensure that if the map is zoomed out such that multiple
         // copies of the feature are visible, the popup appears
         // over the copy being pointed to.
         while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
             coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
         }
-
         new mapboxgl.Popup()
             .setLngLat(coordinates)
             .setHTML(description)
@@ -140,39 +128,32 @@ const data = {
             //console.log("Markerlocation");
             
     });
-
     // Change the cursor to a pointer when the mouse is over the places layer.
     map.on('mouseenter', 'places', function () {
         map.getCanvas().style.cursor = 'pointer';
     });
-
     // Change it back to a pointer when it leaves.
     map.on('mouseleave', 'places', function () {
         map.getCanvas().style.cursor = '';
     });
-
     map.on('click', function (e) {
         
     console.log(e.lngLat);
     
         
-
         var freeCoordinate ={
             longitude : e.lngLat.lng ,
             latitude : e.lngLat.lat, 
         }
         console.log('Longitude'+freeCoordinate.longitude)
         console.log('Latitude'+freeCoordinate.latitude)
-
 var spaetiFeatures = spaeti_layer.getGeoJSON();
-
 var nearestSpaeti = turf.nearest(e.layer.feature, spaetiFeatures);
 nearestSpaeti.properties["marker-size"] = "large";
   });
-
 });
  
   </script>
    
   </body>
-  </html>
+</html>
