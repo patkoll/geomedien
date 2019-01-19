@@ -1,5 +1,6 @@
 
 body  {
+    /* Hintergrund im Body */
 
     text-align: center;
     background-image: url("front_unscharf.png");
@@ -10,22 +11,24 @@ body  {
 }
 
 #centerText {
-    
+        /* Text-Sytle */
+
     left: calc(50% -30px);
     text-align: center;
-    color: rgb(0, 0, 0);
+    color: rgb(32, 32, 32);
     text-shadow: 0 0 15px rgb(4, 238, 255);
     font-size: 6em;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
 }
 
 input {
     
-    
+        /* Sytle des Buttons */
+
     padding: 5px 15px;
     color: rgba(238, 238, 238, 0.815);
     background-color: rgba(211, 211, 211, 0.288);
-    border: solid 2.5px rgba(0, 0, 0, 0.781);
+    border: solid 2.5px rgba(238, 238, 238, 0.815);
     border-radius: 5px;
     font-size: 16px;
     font-weight: bold;
@@ -33,6 +36,7 @@ input {
     transition: ease-in-out all 300ms;
 }
 
+    /* Style des Buttons, wenn man sich mit dem Mauszeiger über diesen befindet*/
 
 
 input:hover {
@@ -50,23 +54,4 @@ input:hover {
 
 
 
-footer {
-    
-    float: left;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: rgba(54, 54, 54, 0.24);
-    color: rgba(255, 255, 255, 0);
-    text-align: center;
-    line-height: 2em;
-    height: 2em;
-    transition: ease-in-out all 300ms;
-}
-
-footer:hover{
-    color: white;
-    background-color: rgba(54, 54, 54, 0.664);
-}
 
