@@ -1,938 +1,966 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8' />
     <title>Spaeti-Tour-Map</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' />
-    
+
     <style>
         /* Grafik/Style und Positionierung des Body's, der Kate und der Pop-up Fenster  */
 
-    body { 
-        background-image: url("front_unscharf.png");
-        background-repeat: no-repeat;
-        background-size: 100%;
-        background-color:#1a1b1b; 
-    }
-    #map { 
-        position:absolute;
-        top:20px; 
-        bottom:20px;
-        margin-left:4%;
-        margin-right:6%;
-        width:90%;
-        border: solid 10px rgb(59, 59, 59); 
-        
-    }
+        body {
+            background-image: url("front_unscharf.png");
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-color: #1a1b1b;
+        }
 
-    .mapboxgl-popup {
-        max-width: 400px;
-        font: 12px/20px 'calibri', Arial, Helvetica, sans-serif;
-        color: rgb(36, 36, 36);
-        
-    }
-    
-  </style>
+        #map {
+            position: absolute;
+            top: 20px;
+            bottom: 20px;
+            margin-left: 4%;
+            margin-right: 6%;
+            width: 90%;
+            border: solid 10px rgb(59, 59, 59);
+
+        }
+
+        .mapboxgl-popup {
+            max-width: 400px;
+            font: 12px/20px 'calibri', Arial, Helvetica, sans-serif;
+            color: rgb(36, 36, 36);
+
+        }
+    </style>
 
 
 
 </head>
+
 <body>
-<!--Karte-->     
-  <div id='map'></div>
-  
-<script>
-// Kartendarstellung der angefertigten Karte über Mapbox + Access Token 
-  mapboxgl.accessToken = 'pk.eyJ1IjoicGF0a29sbCIsImEiOiJjam52b2c2dnMxaGF1M3FwcnFjdnM5aWZjIn0.HaurxxwuPPenRVrZvtlPAg';
-  const map = new mapboxgl.Map({
-  container: 'map',
-  style: 'mapbox://styles/patkoll/cjp9r9j3207zw2sqn95nhh1g0',
-  center: [13.4611651,52.5108993],
-  zoom: 15.7
-  });
+    <!--Karte-->
+    <div id='map'></div>
 
-  map.on('load', function () {
+    <script>
+        // Kartendarstellung der angefertigten Karte über Mapbox + Access Token 
+        mapboxgl.accessToken = 'pk.eyJ1IjoicGF0a29sbCIsImEiOiJjam52b2c2dnMxaGF1M3FwcnFjdnM5aWZjIn0.HaurxxwuPPenRVrZvtlPAg';
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/patkoll/cjp9r9j3207zw2sqn95nhh1g0',
+            center: [13.4611651, 52.5108993],
+            zoom: 15.7
+        });
     
-    // Daten
-   var spaeti_layer = map.addLayer({
-        "id": "places",
-        "type": "symbol",
-        "source": {
-            "type": "geojson",
-            "data": {
-                "type": "FeatureCollection",
-                "features": [{
-                    "type": "Feature",
-                    "properties": {
-                        "name": "Spätkauf Müller",
-                        "description": "<strong>Spätkauf Müller</strong><br/>Frankfurter Allee 151<br/><strong>Öffnungszeiten:</strong>&nbsp;00:00-24:00 Uhr",
-                        "icon": "marker"
-                    },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [13.4821132,52.5131957]
-                    }
-                }, {
-                    "type": "Feature",
-                    "properties": {
-                        "name": "Gastro Meurer",
-                        "icon": "marker",
-                        "description": "<strong>Gastro Meurer</strong><br/>Rathausstraße 2<br/><strong>Öffnungszeiten:</strong>&nbsp;00:00-24:00 Uhr",                    },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [13.481254,52.5135785]
-    
-                }, 
-                    "type": "Feature",
-                    "properties": {
-                        "name": "Kauf Markt",
-                        "icon": "marker",
-                        "description": "<strong>Kauf Markt</strong><br/><br/><strong>Öffnungszeiten:</strong>&nbsp;00:00-24:00 Uhr",                    },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [13.4626981,52.5110467]
-                },
-                 
-                    "type": "Feature",
-                    "properties": {
-                        "name": "Boxi Kiosk",
-                        "icon": "marker",
-                        "description": "<strong>Boxi Kiosk</strong><br/>Gärtnerstraße 14<br/><strong>Öffnungszeiten:</strong>&nbsp;00:00-24:00 Uhr",
-                    },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [13.4611651,52.5108993]
-                },
-            
-                    "type": "Feature",
-                    "properties": {
-                        "name": "LPG",
-                        "description": "<strong>LPG</strong><br/>Seumestraße 12<br/><strong>Öffnungszeiten:</strong><br/>Mo-Fr 09:00-20:00<br/>Sa 09:00-18:00",
-                        "icon": "marker",
-                },
-                    "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        13.4622583,
-                        52.5097543]
-                },
-                    "id": "node/431655696"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "name": "Quang Loi",
-                        "description": "<strong>Quang Loi</strong><br/>Scharnweberstraße 20",
-                        "icon": "marker",
-                },
-                    "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        13.4673128,
-                        52.5128191]
-    
-                },
-    
-                    "type": "Feature",
-                    "properties": {
-                        "name": "Euro Shop",
-                        "description": "<strong>Euro Shop</strong><br/>Frankfurter Allee 60<br/><strong>Öffnungszeiten:</strong>&nbsp;00:00 - 24:00 Uhr",
-                        "icon": "marker",
-                },
-                    "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        13.4659449,
-                        52.5143578]
-                },
-                    "id": "node/576051178"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "name": "Käptn Kiez",
-                        "description": "<strong>Käptn Kiez</strong><br/><strong>Öffnungszeiten:</strong><br/>Mo 09:00-24:00 Uhr<br/>Tu-Th 09:00-24:00 Uhr<br/>Fr 10:00-24:00 Uhr <br/> Sa-Su 12:00-04:00 Uhr",
-                        "icon": "marker",
-                },
-                    "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        13.4655484,
-                        52.506133
-                        ]
-                },
-                    "id": "node/838429741"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/838429759",
-                        "name": "Kiosk 24",
-                        "shop": "convenience",
-                        "type": "kiosk",
-                        "wheelchair": "yes",
-                        "description": "<strong>Kiosk 24</strong><br/>",
-                        "icon": "marker",
-                },
-                    "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                         13.4674992,
-                        52.5049592
-                        ]
-                },
-                    "id": "node/838429759"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "name": "Die Späti Brüder",
-                        "description": "<strong>Die Späti Brüder</strong><br/>Sonntagstraße 2<br/><strong>Öffnungszeiten:</strong>&nbsp;10:00 - 04:00 Uhr",
-                        "icon": "marker",
-                },
-                    "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        13.4678618,
-                        52.5046457
-                        ]
-                },
-                    "id": "node/838429794"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/863962594",
-                        "name": "Kiez Shop",
-                        "post_box": "yes",
-                        "shop": "convenience",
-                        "wheelchair": "limited",
-                        "icon": "marker",
-                        "description": "<strong>Kiez Shop</strong><br/><strong>Öffnungszeiten:</strong>&nbsp;10:00 - 04:00 Uhr",
-
-                },
-                    "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        13.4703076,
-                        52.5058829
-                    ]
-                },
-                    "id": "node/863962594"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/863962795",
-                        "addr:city": "Berlin",
-                        "addr:street": "Boxhagener Straße",
-                        "name": "Boxi Spätshop",
-                        "shop": "convenience",
-                        "wheelchair": "no",
-                        "description": "<strong>Boxi Spätshop</strong><br/><strong>Öffnungszeiten:</strong>&nbsp;00:00 - 24:00 Uhr",
-                        "icon": "marker",
-                },
-                    "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        13.4685989,
-                        52.5071539
-                        ]
-                },
-                    "id": "node/863962795"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "description": "<strong>Eastside Kiosk</strong><br/>Warschauer Straße 14<br/><strong>Öffnungszeiten:</strong>&nbsp;10:00 - 04:00 Uhr",
-                        "icon": "marker",
-                },
-                    "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        13.4530374,
-                        52.5125059
-                        ]
-                },
-                    "id": "node/1140901464"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "description": "<strong>Tele Internet 69</strong><br/>Neue Bahnhofstraße 69<br/><strong>Öffnungszeiten:</strong>&nbsp;10:00 - 04:00 Uhr",
-                        "icon": "marker",
-                },
-                    "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        13.4698461,
-                        52.506568
-                        ]
-                },
-                    "id": "node/1140906805"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/1140914372",
-                        "name": "City Kiosk",
-                        "shop": "convenience",
-                        "wheelchair": "no",
-                        "description": "<strong>Coty Kiosk</strong><br/><strong>Öffnungszeiten:</strong>&nbsp;00:00 - 24:00 Uhr",
-                        "icon": "marker",
-                },
-                    "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        13.462105,
-                        52.5100286
-                        ]
-                },
-                    "id": "node/1140914372"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "name": "Esperanto",
-                        "description": "<strong>Esperanto</strong><br/>Simon Dach Straße 18<br/><strong>Öffnungszeiten:</strong>&nbsp;10:00 - 07:00 Uhr",
-                        "icon": "marker",
-                },
-                    "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        13.4555933,
-                        52.5091058
-                        ]
-      
-                },
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/1455764529",
-                        "name": "MultiMarkt3",
-                        "shop": "convenience",
-                        "wheelchair": "no",
-                        "description": "<strong>MultiMarkt3</strong><br/>Keine weiteren Daten vorhanden",
-                        "icon": "marker",
-                },
-                    "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        13.4660361,
-                        52.5085725
-                    ]
-                },
-                    "id": "node/1455764529"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "name": "Olive",
-                        "description": "<strong>Olive</strong><br/>Simon Dach Straße 18<br/><strong>Öffnungszeiten:</strong><br/>Mo 05:00-24:00<br/> Tu-Th 00:00-01:00,05:00-24:00<br/> Fr-Su 00:00-24:00",
-                        "icon": "marker",
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4618701,
-                        52.517851
-                        ]
-                },
-                    "id": "node/1614528079"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/1633204905",
-                        "addr:city": "Berlin",
-                        "addr:country": "DE",
-                        "addr:housenumber": 104,
-                        "addr:street": "Frankfurter Allee",
-                        "name": "HOA MAI Asia Supermarket",
-                        "description": "<strong>HOA MAI Asia Supermarket</strong><br/>Frankfurter Allee 104<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-Sa 09:00-20:00<br/>Telefon:&nbsp;+493027573632",
-
-                        "icon": "marker",
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4740244,
-                        52.513557
-                        ]
-                },
-                    "id": "node/1633204905"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/1862169692",
-                        "name": "Kiezladen",
-                        "shop": "convenience",
-                        "description": "<strong>Kiezladen</strong><br/>Keine weiteren Daten vorhanden",
-                        "icon": "marker",
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.459522,
-                        52.5102529
-                        ]
-                },
-                    "id": "node/1862169692"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/2278426774",
-                        "addr:city": "Berlin",
-                        "addr:country": "DE",
-                        "addr:postcode": 10247,
-                        "addr:street": "Scharnweberstraße",
-                        "addr:suburb": "Friedrichshain",
-                        "name": "Späti \"Lebensmittel & Blumen\"",
-                        "shop": "convenience",
-                        "description": "<strong>Späti-Lebensmittel & Blumen</strong><br/>Scharnweberstraße<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-Sa 09:00-05:00",
-
-                        "icon": "marker",
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4721172,
-                        52.5122949
-                        ]
-                },
-                    "id": "node/2278426774"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/2278429402",
-                        "addr:city": "Berlin",
-                        "addr:country": "DE",
-                        "addr:housenumber": 12,
-                        "addr:postcode": 10247,
-                        "addr:street": "Scharnweberstraße",
-                        "addr:suburb": "Friedrichshain",
-                        "name": "Späti \"Getränke & Internet\"",
-                        "shop": "convenience",
-                        "description": "<strong>Späti-Getränke & Internet</strong><br/>Scharnweberstraße 12<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-Sa 09:00-05:00",
-
-                        "icon": "marker",
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4719053,
-                        52.5123235
-                        ]
-                },
-                    "id": "node/2278429402"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/2335083233",
-                        "addr:city": "Berlin",
-                        "addr:country": "DE",
-                        "addr:housenumber": 35,
-                        "addr:postcode": 10245,
-                        "addr:street": "Grünberger Straße",
-                        "addr:suburb": "Friedrichshain",
-                        "name": "Day & Night Shop",
-                        "shop": "convenience",
-                        "wheelchair": "no",
-                        "description": "<strong>Day & Night Shop</strong><br/>Grünberger Straße 35<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-Sa 00:00-24:00",
-
-                        "icon": "marker",
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4540704,
-                        52.5123328
-                        ]
-                },
-                    "id": "node/2335083233"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/2335091426",
-                        "addr:city": "Berlin",
-                        "addr:country": "DE",
-                        "addr:housenumber": 49,
-                        "addr:postcode": 10245,
-                        "addr:street": "Grünberger Straße",
-                        "addr:suburb": "Friedrichshain",
-                        "name": "Mini Markt",
-                        "shop": "convenience",
-                        "wheelchair": "no",
-                        "description": "<strong>Mini Markt</strong><br/>Grünberger Straße 49<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-Sa 00:00-24:00",
-
-                        "icon": "marker",
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4557455,
-                        52.5120577
-                        ]
-                },
-                    "id": "node/2335091426"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/2429480918",
-                        "addr:city": "Berlin",
-                        "addr:country": "DE",
-                        "addr:housenumber": 19,
-                        "addr:postcode": 10247,
-                        "addr:street": "Jungstraße",
-                        "addr:suburb": "Friedrichshain",
-                        "contact:mobile": "+49 174 5787044",
-                        "contact:website": "http://www.jungshop-oriental.de",
-                        "description": "Spätverkauf, Schwerpunkt: indisch",
-                        "name": "Jung Shop",
-                        "shop": "convenience",
-                        "source": "Dakota 20",
-                        "wheelchair": "yes",
-                        "description": "<strong>Jung Shop</strong><br/>Jungstraße 19<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-Sa 00:00-24:00<br/>Telefon: +49 174 5787044<br/>",
-
-                        "icon": "marker",
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4654553,
-                        52.5112438
-                        ]
-                },
-                    "id": "node/2429480918"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/2429501927",
-                        "addr:city": "Berlin",
-                        "addr:country": "DE",
-                        "addr:housenumber": 20,
-                        "addr:postcode": 10245,
-                        "addr:street": "Gabriel-Max-Straße",
-                        "addr:suburb": "Friedrichshain",
-                        "contact:mobile": "+49 170 3066913",
-                        "description": "<strong>Meet Kiosk Postagentur</strong><br/>Gabriel-Max-Straße 20<br/><strong>Öffnungszeiten:</strong><br/>Mo-So 00:00-24:00<br/>Telefon: +49 170 3066913<br/>",
-                        "name": "Meet Kiosk Postagentur",
-                        "shop": "convenience",
-                        "source": "Dakota 20",
-                        "wheelchair": "yes",
-                        
-                        "icon": "marker",
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4579456,
-                        52.5099712
-                        ]
-                },
-                    "id": "node/2429501927"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/2496841605",
-                        "addr:city": "Berlin",
-                        "addr:country": "DE",
-                        "addr:housenumber": 4,
-                        "addr:postcode": 10245,
-                        "addr:street": "Gabriel-Max-Straße",
-                        "addr:suburb": "Friedrichshain",
-                        "amenity": "internet_cafe",
-                        "atm": "yes",
-                        "contact:phone": "+49 30 66766852",
-                        "contact:website": "http://www.aquariumlounge.de/",
-                        "name": "Quick Store Aquarium Lounge",
-                        "note": "Kiosk und Internetcafé",
-                        "opening_hours": "00:00-01:00,08:30-24:00",
-                        "shop": "convenience",
-                        "source": "Dakota 20",
-                        "description": "<strong>Quick Store Aquarium Lounge</strong><br/>Gabriel-Max-Straße 4<br/><strong>Öffnungszeiten:</strong>&nbsp;08:30-01:00<br/>Telefon: +49 30 66766852<br/><a href=\"http://www.aquariumlounge.de/\" target=\"_blank\" title=\"Opens in a new window\">www.aquariumlounge.de</a>",
-
-                        "icon": "marker",
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4583749,
-                        52.5101364
-                        ]
-                },
-                    "id": "node/2496841605"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/2663080756",
-                        "addr:housenumber": 28,
-                        "addr:street": "Kaskelstraße",
-                        "name": "Kiez Einkaufseck",
-                        "opening_hours": "Mo-Sa 08:30-22:00",
-                        "shop": "convenience",
-                        "wheelchair": "no",
-                        "description": "<strong>Kiez Einkaufseck</strong><br/>Kaskelstraße 28<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-Sa 08:30-22:00",
-
-                        "icon": "marker",
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4791072,
-                        52.5041947
-                        ]
-                },
-                    "id": "node/2663080756"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/2690026209",
-                        "name": "Best of Späti",
-                        "shop": "convenience",
-                        "wheelchair": "no",
-                        "description": "<strong>Best of Späti</strong><br/>Keine weiteren Daten vorhanden",
-
-                        "icon": "marker",
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4703549,
-                        52.5064939
-                        ]
-                },
-                    "id": "node/2690026209"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/2776929959",
-                        "addr:city": "Berlin",
-                        "addr:country": "DE",
-                        "addr:housenumber": 88,
-                        "addr:postcode": 10245,
-                        "addr:street": "Boxhagener Straße",
-                        "addr:suburb": "Friedrichshain",
-                        "name": "Eyzi Getränke",
-                        "shop": "convenience",
-                        "description": "<strong>Eyzi Getränke</strong><br/>Boxhagener Straße 88<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-Sa 00:00-24:00",
-
-                        "icon": "marker",
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4649236,
-                        52.5097911
-                        ]
-                },
-                    "id": "node/2776929959"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/2935555501",
-                        "name": "MultiMarkt",
-                        "shop": "convenience",
-                        "wheelchair": "yes",
-                        "description": "<strong>MultiMarkt</strong><br/>Keine weiteren Daten vorhanden",
-
-                        "icon": "marker",
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4622046,
-                        52.5085877
-                        ]
-                },
-                    "id": "node/2935555501"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/3072013563",
-                        "name": "Phillip's Lebensmittel",
-                        "shop": "convenience",
-                        "description": "<strong>Phillip's Lebensmittel</strong><br/>Keine weiteren Daten vorhanden",
-
-                        "icon": "marker",
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4538,
-                        52.5177191
-                        ]
-                },
-                    "id": "node/3072013563"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/3231998402",
-                        "name": "Rigaer Getränke",
-                        "shop": "convenience",
-                        "icon": "marker",
-                        "description": "<strong>Rigaer Getränke</strong><br/><strong>Öffnungszeiten:</strong><br/>Mo 10:00-24:00<br/>Do-Fr 10:00-01:00<br/>Sa 10:00-24:00<br/>So 12:00-02:00",
-
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4547027,
-                        52.5183507
-                        ]
-                },
-                    "id": "node/3231998402"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/3896292628",
-                        "addr:city": "Berlin",
-                        "addr:country": "DE",
-                        "addr:housenumber": 32,
-                        "addr:postcode": 10245,
-                        "addr:street": "Grünberger Straße",
-                        "name": "Day & Night Shop",
-                        "shop": "convenience",
-                        "description": "<strong>Day & Night Shop</strong><br/>Grünberger Straße 32<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-So 00:00-24:00",
-
-                        "icon": "marker",
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4520316,
-                        52.5124095
-                        ]
-                },
-                    "id": "node/3896292628"
-                    
-                },
-                    
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/4116116392",
-                        "addr:housenumber": 78,
-                        "addr:street": "Warschauer Straße",
-                        "name": "Kiosk Diva",
-                        "shop": "convenience",
-                        "toilets:wheelchair": "no",
-                        "wheelchair": "no",
-                        "icon": "marker",
-                        "description": "<strong>Kiosk Diva</strong><br/>Warschauer Straße 78",
-
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4533273,
-                        52.513245
-                        ]
-                },
-                    "id": "node/4116116392"
-                    
-                },
-                    
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/4798989739",
-                        "addr:city": "Berlin",
-                        "addr:housenumber": 24,
-                        "addr:postcode": 10245,
-                        "addr:street": "Boxhagener Straße",
-                        "email": "berlin@getraenkefeinkost.de",
-                        "name": "Getränkefeinkost",
-                        "opening_hours": "Mo-Fr 13:00-20:00; Sa 11:00-20:00",
-                        "phone": "+493025933800",
-                        "shop": "convenience",
-                        "website": "https://www.getraenkefeinkost.de/filiale/berlin/",
-                        "wheelchair": "no",
-                        "icon": "marker",
-                        "description": "<strong>Getränkefeinkost</strong><br/>Boxhagener Straße 24<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-Fr 13:00-20:00; Sa 11:00-20:00<br/>Telefon: +493025933800<br/><a href=\"https://www.getraenkefeinkost.de/filiale/berlin/\" target=\"_blank\" title=\"Opens in a new window\">www.getraenkefeinkost.de</a><br/>Email: berlin@getraenkefeinkost.de",
-
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4568722,
-                        52.5129283
-                        ]
-                },
-                    "id": "node/4798989739"
-                },
-                    
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/4902369112",
-                        "addr:city": "Berlin",
-                        "addr:country": "DE",
-                        "addr:postcode": 10247,
-                        "addr:street": "Proskauer Straße",
-                        "addr:suburb": "Friedrichshain",
-                        "name": "Spätkauf",
-                        "opening_hours": "Mo-Su 08:00-03:00",
-                        "shop": "convenience",
-                        "wheelchair": "limited",
-                        "description": "<strong>Spätkauf</strong><br/>Proskauer Straße<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-So 08:00-03:00",
-
-                        "icon": "marker",
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4612204,
-                        52.5167241
-                        ]
-                },
-                    "id": "node/4902369112"
-                },
-                    
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/4920773047",
-                        "addr:city": "Berlin",
-                        "addr:housenumber": 33,
-                        "addr:postcode": 10245,
-                        "addr:street": "Gärtnerstraße",
-                        "name": "I Love Späti",
-                        "shop": "convenience",
-                        "icon": "marker",
-                        "description": "<strong>I Love Späti</strong><br/>Gärtnerstraße 33<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-So 00:00-24:00",
-
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4595583,
-                        52.508469
-                        ]
-                },
-                    "id": "node/4920773047"
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/4931219961",
-                        "addr:housenumber": 26,
-                        "addr:postcode": 10247,
-                        "addr:street": "Niederbarnimstraße",
-                        "name": "Spiff 24",
-                        "shop": "convenience",
-                        "surveillance": "yes",
-                        "wheelchair": "yes",
-                        "icon": "marker",
-                        "description": "<strong>Spiff 24</strong><br/>Niederbarnimstraße 26<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-So 08:00-03:00",
-
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4600352,
-                        52.5147244
-                        ]
-                },
-                    "id": "node/4931219961"
-                },
-                    
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "@id": "node/5503456919",
-                        "addr:city": "Berlin",
-                        "addr:country": "DE",
-                        "addr:postcode": 10247,
-                        "addr:street": "Rigaer Straße",
-                        "addr:suburb": "Friedrichshain",
-                        "name": "Trinkbar Spätkauf",
-                        "shop": "convenience",
-                        "icon": "marker",
-                        "description": "<strong>Trinkbar Spätkauf</strong><br/>Rigaer Straße<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-So 07:00-04:00",
-                        
-                },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                        13.4623235,
-                        52.5167677
-                        ]
-                    },
-                }]
-                }
-        },
-        "layout": {
-            "icon-image": "{icon}-15",
-            "text-field": "{name}",
-            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-            "text-offset": [0, 0.6],
-            "text-anchor": "top",
-            
-            
-        }
-    });
-
-
-    
-
-
-    map.on('click', 'places', function (e) {
-        var coordinates = e.features[0].geometry.coordinates.slice();
-        var description = e.features[0].properties.description;
-
-        // Verändert die sichtbarkeit der Marker beim zoomen.
-        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-        }
-
-        new mapboxgl.Popup()
-            .setLngLat(coordinates)
-            .setHTML(description)
-            .addTo(map);
-    });
-
-    // Ändert den Mauszeiger, wenn man sich über den Layern befindet.
-    map.on('mouseenter', 'places', function () {
-        map.getCanvas().style.cursor = 'pointer';
-    });
-
-    // Ändert den Mauszeiger wenn man den Layer verlässt.
-    map.on('mouseleave', 'places', function () {
-        map.getCanvas().style.cursor = '';
-    });
-
-    map.on('click', function (e) {
-       //var coordinates = e.features[0].geometry.coordinates.slice();
-      //var description = e.features[0].properties.description;
-
-        console.log(e.lngLat)
-
-
-
-  });
-
-});
  
- </script>
-   
-  </body>
-  </html>
+
+        map.on('load', function () {
+map.addLayer({
+                    "id": "unserStandort",
+                    "type": "symbol",
+                    "source": {
+                        "type": "geojson",
+                        "data": {
+                            "type": "FeatureCollection",
+                            "features": [{
+                                "type": "Feature",
+                                "properties": {
+                                    "icon": "marker"
+                                },
+                                "geometry": {
+                                    "type": "Point",
+                                    "coordinates": [unsereLongitude, unsereLatitude]
+                                }
+                            }]
+                        }
+                    }
+                })
+            // Daten
+            var spaetis = {
+                        "type": "FeatureCollection",
+                        "features": [{
+                            "type": "Feature",
+                            "properties": {
+                                "name": "Spätkauf Müller",
+                                "description": "<strong>Spätkauf Müller</strong><br/>Frankfurter Allee 151<br/><strong>Öffnungszeiten:</strong>&nbsp;00:00-24:00 Uhr",
+                                "icon": "marker"
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [13.4821132, 52.5131957]
+                            }
+                        }, {
+                            "type": "Feature",
+                            "properties": {
+                                "name": "Gastro Meurer",
+                                "icon": "marker",
+                                "description": "<strong>Gastro Meurer</strong><br/>Rathausstraße 2<br/><strong>Öffnungszeiten:</strong>&nbsp;00:00-24:00 Uhr",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [13.481254, 52.5135785]
+
+                            },
+                            "type": "Feature",
+                            "properties": {
+                                "name": "Kauf Markt",
+                                "icon": "marker",
+                                "description": "<strong>Kauf Markt</strong><br/><br/><strong>Öffnungszeiten:</strong>&nbsp;00:00-24:00 Uhr",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [13.4626981, 52.5110467]
+                            },
+
+                            "type": "Feature",
+                            "properties": {
+                                "name": "Boxi Kiosk",
+                                "icon": "marker",
+                                "description": "<strong>Boxi Kiosk</strong><br/>Gärtnerstraße 14<br/><strong>Öffnungszeiten:</strong>&nbsp;00:00-24:00 Uhr",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [13.4611651, 52.5108993]
+                            },
+
+                            "type": "Feature",
+                            "properties": {
+                                "name": "LPG",
+                                "description": "<strong>LPG</strong><br/>Seumestraße 12<br/><strong>Öffnungszeiten:</strong><br/>Mo-Fr 09:00-20:00<br/>Sa 09:00-18:00",
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4622583,
+                                    52.5097543]
+                            },
+                            "id": "node/431655696"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "name": "Quang Loi",
+                                "description": "<strong>Quang Loi</strong><br/>Scharnweberstraße 20",
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4673128,
+                                    52.5128191]
+
+                            },
+
+                            "type": "Feature",
+                            "properties": {
+                                "name": "Euro Shop",
+                                "description": "<strong>Euro Shop</strong><br/>Frankfurter Allee 60<br/><strong>Öffnungszeiten:</strong>&nbsp;00:00 - 24:00 Uhr",
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4659449,
+                                    52.5143578]
+                            },
+                            "id": "node/576051178"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "name": "Käptn Kiez",
+                                "description": "<strong>Käptn Kiez</strong><br/><strong>Öffnungszeiten:</strong><br/>Mo 09:00-24:00 Uhr<br/>Tu-Th 09:00-24:00 Uhr<br/>Fr 10:00-24:00 Uhr <br/> Sa-Su 12:00-04:00 Uhr",
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4655484,
+                                    52.506133
+                                ]
+                            },
+                            "id": "node/838429741"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/838429759",
+                                "name": "Kiosk 24",
+                                "shop": "convenience",
+                                "type": "kiosk",
+                                "wheelchair": "yes",
+                                "description": "<strong>Kiosk 24</strong><br/>",
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4674992,
+                                    52.5049592
+                                ]
+                            },
+                            "id": "node/838429759"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "name": "Die Späti Brüder",
+                                "description": "<strong>Die Späti Brüder</strong><br/>Sonntagstraße 2<br/><strong>Öffnungszeiten:</strong>&nbsp;10:00 - 04:00 Uhr",
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4678618,
+                                    52.5046457
+                                ]
+                            },
+                            "id": "node/838429794"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/863962594",
+                                "name": "Kiez Shop",
+                                "post_box": "yes",
+                                "shop": "convenience",
+                                "wheelchair": "limited",
+                                "icon": "marker",
+                                "description": "<strong>Kiez Shop</strong><br/><strong>Öffnungszeiten:</strong>&nbsp;10:00 - 04:00 Uhr",
+
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4703076,
+                                    52.5058829
+                                ]
+                            },
+                            "id": "node/863962594"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/863962795",
+                                "addr:city": "Berlin",
+                                "addr:street": "Boxhagener Straße",
+                                "name": "Boxi Spätshop",
+                                "shop": "convenience",
+                                "wheelchair": "no",
+                                "description": "<strong>Boxi Spätshop</strong><br/><strong>Öffnungszeiten:</strong>&nbsp;00:00 - 24:00 Uhr",
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4685989,
+                                    52.5071539
+                                ]
+                            },
+                            "id": "node/863962795"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "description": "<strong>Eastside Kiosk</strong><br/>Warschauer Straße 14<br/><strong>Öffnungszeiten:</strong>&nbsp;10:00 - 04:00 Uhr",
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4530374,
+                                    52.5125059
+                                ]
+                            },
+                            "id": "node/1140901464"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "description": "<strong>Tele Internet 69</strong><br/>Neue Bahnhofstraße 69<br/><strong>Öffnungszeiten:</strong>&nbsp;10:00 - 04:00 Uhr",
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4698461,
+                                    52.506568
+                                ]
+                            },
+                            "id": "node/1140906805"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/1140914372",
+                                "name": "City Kiosk",
+                                "shop": "convenience",
+                                "wheelchair": "no",
+                                "description": "<strong>Coty Kiosk</strong><br/><strong>Öffnungszeiten:</strong>&nbsp;00:00 - 24:00 Uhr",
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.462105,
+                                    52.5100286
+                                ]
+                            },
+                            "id": "node/1140914372"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "name": "Esperanto",
+                                "description": "<strong>Esperanto</strong><br/>Simon Dach Straße 18<br/><strong>Öffnungszeiten:</strong>&nbsp;10:00 - 07:00 Uhr",
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4555933,
+                                    52.5091058
+                                ]
+
+                            },
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/1455764529",
+                                "name": "MultiMarkt3",
+                                "shop": "convenience",
+                                "wheelchair": "no",
+                                "description": "<strong>MultiMarkt3</strong><br/>Keine weiteren Daten vorhanden",
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4660361,
+                                    52.5085725
+                                ]
+                            },
+                            "id": "node/1455764529"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "name": "Olive",
+                                "description": "<strong>Olive</strong><br/>Simon Dach Straße 18<br/><strong>Öffnungszeiten:</strong><br/>Mo 05:00-24:00<br/> Tu-Th 00:00-01:00,05:00-24:00<br/> Fr-Su 00:00-24:00",
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4618701,
+                                    52.517851
+                                ]
+                            },
+                            "id": "node/1614528079"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/1633204905",
+                                "addr:city": "Berlin",
+                                "addr:country": "DE",
+                                "addr:housenumber": 104,
+                                "addr:street": "Frankfurter Allee",
+                                "name": "HOA MAI Asia Supermarket",
+                                "description": "<strong>HOA MAI Asia Supermarket</strong><br/>Frankfurter Allee 104<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-Sa 09:00-20:00<br/>Telefon:&nbsp;+493027573632",
+
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4740244,
+                                    52.513557
+                                ]
+                            },
+                            "id": "node/1633204905"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/1862169692",
+                                "name": "Kiezladen",
+                                "shop": "convenience",
+                                "description": "<strong>Kiezladen</strong><br/>Keine weiteren Daten vorhanden",
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.459522,
+                                    52.5102529
+                                ]
+                            },
+                            "id": "node/1862169692"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/2278426774",
+                                "addr:city": "Berlin",
+                                "addr:country": "DE",
+                                "addr:postcode": 10247,
+                                "addr:street": "Scharnweberstraße",
+                                "addr:suburb": "Friedrichshain",
+                                "name": "Späti \"Lebensmittel & Blumen\"",
+                                "shop": "convenience",
+                                "description": "<strong>Späti-Lebensmittel & Blumen</strong><br/>Scharnweberstraße<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-Sa 09:00-05:00",
+
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4721172,
+                                    52.5122949
+                                ]
+                            },
+                            "id": "node/2278426774"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/2278429402",
+                                "addr:city": "Berlin",
+                                "addr:country": "DE",
+                                "addr:housenumber": 12,
+                                "addr:postcode": 10247,
+                                "addr:street": "Scharnweberstraße",
+                                "addr:suburb": "Friedrichshain",
+                                "name": "Späti \"Getränke & Internet\"",
+                                "shop": "convenience",
+                                "description": "<strong>Späti-Getränke & Internet</strong><br/>Scharnweberstraße 12<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-Sa 09:00-05:00",
+
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4719053,
+                                    52.5123235
+                                ]
+                            },
+                            "id": "node/2278429402"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/2335083233",
+                                "addr:city": "Berlin",
+                                "addr:country": "DE",
+                                "addr:housenumber": 35,
+                                "addr:postcode": 10245,
+                                "addr:street": "Grünberger Straße",
+                                "addr:suburb": "Friedrichshain",
+                                "name": "Day & Night Shop",
+                                "shop": "convenience",
+                                "wheelchair": "no",
+                                "description": "<strong>Day & Night Shop</strong><br/>Grünberger Straße 35<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-Sa 00:00-24:00",
+
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4540704,
+                                    52.5123328
+                                ]
+                            },
+                            "id": "node/2335083233"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/2335091426",
+                                "addr:city": "Berlin",
+                                "addr:country": "DE",
+                                "addr:housenumber": 49,
+                                "addr:postcode": 10245,
+                                "addr:street": "Grünberger Straße",
+                                "addr:suburb": "Friedrichshain",
+                                "name": "Mini Markt",
+                                "shop": "convenience",
+                                "wheelchair": "no",
+                                "description": "<strong>Mini Markt</strong><br/>Grünberger Straße 49<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-Sa 00:00-24:00",
+
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4557455,
+                                    52.5120577
+                                ]
+                            },
+                            "id": "node/2335091426"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/2429480918",
+                                "addr:city": "Berlin",
+                                "addr:country": "DE",
+                                "addr:housenumber": 19,
+                                "addr:postcode": 10247,
+                                "addr:street": "Jungstraße",
+                                "addr:suburb": "Friedrichshain",
+                                "contact:mobile": "+49 174 5787044",
+                                "contact:website": "http://www.jungshop-oriental.de",
+                                "description": "Spätverkauf, Schwerpunkt: indisch",
+                                "name": "Jung Shop",
+                                "shop": "convenience",
+                                "source": "Dakota 20",
+                                "wheelchair": "yes",
+                                "description": "<strong>Jung Shop</strong><br/>Jungstraße 19<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-Sa 00:00-24:00<br/>Telefon: +49 174 5787044<br/>",
+
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4654553,
+                                    52.5112438
+                                ]
+                            },
+                            "id": "node/2429480918"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/2429501927",
+                                "addr:city": "Berlin",
+                                "addr:country": "DE",
+                                "addr:housenumber": 20,
+                                "addr:postcode": 10245,
+                                "addr:street": "Gabriel-Max-Straße",
+                                "addr:suburb": "Friedrichshain",
+                                "contact:mobile": "+49 170 3066913",
+                                "description": "<strong>Meet Kiosk Postagentur</strong><br/>Gabriel-Max-Straße 20<br/><strong>Öffnungszeiten:</strong><br/>Mo-So 00:00-24:00<br/>Telefon: +49 170 3066913<br/>",
+                                "name": "Meet Kiosk Postagentur",
+                                "shop": "convenience",
+                                "source": "Dakota 20",
+                                "wheelchair": "yes",
+
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4579456,
+                                    52.5099712
+                                ]
+                            },
+                            "id": "node/2429501927"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/2496841605",
+                                "addr:city": "Berlin",
+                                "addr:country": "DE",
+                                "addr:housenumber": 4,
+                                "addr:postcode": 10245,
+                                "addr:street": "Gabriel-Max-Straße",
+                                "addr:suburb": "Friedrichshain",
+                                "amenity": "internet_cafe",
+                                "atm": "yes",
+                                "contact:phone": "+49 30 66766852",
+                                "contact:website": "http://www.aquariumlounge.de/",
+                                "name": "Quick Store Aquarium Lounge",
+                                "note": "Kiosk und Internetcafé",
+                                "opening_hours": "00:00-01:00,08:30-24:00",
+                                "shop": "convenience",
+                                "source": "Dakota 20",
+                                "description": "<strong>Quick Store Aquarium Lounge</strong><br/>Gabriel-Max-Straße 4<br/><strong>Öffnungszeiten:</strong>&nbsp;08:30-01:00<br/>Telefon: +49 30 66766852<br/><a href=\"http://www.aquariumlounge.de/\" target=\"_blank\" title=\"Opens in a new window\">www.aquariumlounge.de</a>",
+
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4583749,
+                                    52.5101364
+                                ]
+                            },
+                            "id": "node/2496841605"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/2663080756",
+                                "addr:housenumber": 28,
+                                "addr:street": "Kaskelstraße",
+                                "name": "Kiez Einkaufseck",
+                                "opening_hours": "Mo-Sa 08:30-22:00",
+                                "shop": "convenience",
+                                "wheelchair": "no",
+                                "description": "<strong>Kiez Einkaufseck</strong><br/>Kaskelstraße 28<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-Sa 08:30-22:00",
+
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4791072,
+                                    52.5041947
+                                ]
+                            },
+                            "id": "node/2663080756"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/2690026209",
+                                "name": "Best of Späti",
+                                "shop": "convenience",
+                                "wheelchair": "no",
+                                "description": "<strong>Best of Späti</strong><br/>Keine weiteren Daten vorhanden",
+
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4703549,
+                                    52.5064939
+                                ]
+                            },
+                            "id": "node/2690026209"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/2776929959",
+                                "addr:city": "Berlin",
+                                "addr:country": "DE",
+                                "addr:housenumber": 88,
+                                "addr:postcode": 10245,
+                                "addr:street": "Boxhagener Straße",
+                                "addr:suburb": "Friedrichshain",
+                                "name": "Eyzi Getränke",
+                                "shop": "convenience",
+                                "description": "<strong>Eyzi Getränke</strong><br/>Boxhagener Straße 88<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-Sa 00:00-24:00",
+
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4649236,
+                                    52.5097911
+                                ]
+                            },
+                            "id": "node/2776929959"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/2935555501",
+                                "name": "MultiMarkt",
+                                "shop": "convenience",
+                                "wheelchair": "yes",
+                                "description": "<strong>MultiMarkt</strong><br/>Keine weiteren Daten vorhanden",
+
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4622046,
+                                    52.5085877
+                                ]
+                            },
+                            "id": "node/2935555501"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/3072013563",
+                                "name": "Phillip's Lebensmittel",
+                                "shop": "convenience",
+                                "description": "<strong>Phillip's Lebensmittel</strong><br/>Keine weiteren Daten vorhanden",
+
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4538,
+                                    52.5177191
+                                ]
+                            },
+                            "id": "node/3072013563"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/3231998402",
+                                "name": "Rigaer Getränke",
+                                "shop": "convenience",
+                                "icon": "marker",
+                                "description": "<strong>Rigaer Getränke</strong><br/><strong>Öffnungszeiten:</strong><br/>Mo 10:00-24:00<br/>Do-Fr 10:00-01:00<br/>Sa 10:00-24:00<br/>So 12:00-02:00",
+
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4547027,
+                                    52.5183507
+                                ]
+                            },
+                            "id": "node/3231998402"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/3896292628",
+                                "addr:city": "Berlin",
+                                "addr:country": "DE",
+                                "addr:housenumber": 32,
+                                "addr:postcode": 10245,
+                                "addr:street": "Grünberger Straße",
+                                "name": "Day & Night Shop",
+                                "shop": "convenience",
+                                "description": "<strong>Day & Night Shop</strong><br/>Grünberger Straße 32<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-So 00:00-24:00",
+
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4520316,
+                                    52.5124095
+                                ]
+                            },
+                            "id": "node/3896292628"
+
+                        },
+
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/4116116392",
+                                "addr:housenumber": 78,
+                                "addr:street": "Warschauer Straße",
+                                "name": "Kiosk Diva",
+                                "shop": "convenience",
+                                "toilets:wheelchair": "no",
+                                "wheelchair": "no",
+                                "icon": "marker",
+                                "description": "<strong>Kiosk Diva</strong><br/>Warschauer Straße 78",
+
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4533273,
+                                    52.513245
+                                ]
+                            },
+                            "id": "node/4116116392"
+
+                        },
+
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/4798989739",
+                                "addr:city": "Berlin",
+                                "addr:housenumber": 24,
+                                "addr:postcode": 10245,
+                                "addr:street": "Boxhagener Straße",
+                                "email": "berlin@getraenkefeinkost.de",
+                                "name": "Getränkefeinkost",
+                                "opening_hours": "Mo-Fr 13:00-20:00; Sa 11:00-20:00",
+                                "phone": "+493025933800",
+                                "shop": "convenience",
+                                "website": "https://www.getraenkefeinkost.de/filiale/berlin/",
+                                "wheelchair": "no",
+                                "icon": "marker",
+                                "description": "<strong>Getränkefeinkost</strong><br/>Boxhagener Straße 24<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-Fr 13:00-20:00; Sa 11:00-20:00<br/>Telefon: +493025933800<br/><a href=\"https://www.getraenkefeinkost.de/filiale/berlin/\" target=\"_blank\" title=\"Opens in a new window\">www.getraenkefeinkost.de</a><br/>Email: berlin@getraenkefeinkost.de",
+
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4568722,
+                                    52.5129283
+                                ]
+                            },
+                            "id": "node/4798989739"
+                        },
+
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/4902369112",
+                                "addr:city": "Berlin",
+                                "addr:country": "DE",
+                                "addr:postcode": 10247,
+                                "addr:street": "Proskauer Straße",
+                                "addr:suburb": "Friedrichshain",
+                                "name": "Spätkauf",
+                                "opening_hours": "Mo-Su 08:00-03:00",
+                                "shop": "convenience",
+                                "wheelchair": "limited",
+                                "description": "<strong>Spätkauf</strong><br/>Proskauer Straße<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-So 08:00-03:00",
+
+                                "icon": "marker",
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4612204,
+                                    52.5167241
+                                ]
+                            },
+                            "id": "node/4902369112"
+                        },
+
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/4920773047",
+                                "addr:city": "Berlin",
+                                "addr:housenumber": 33,
+                                "addr:postcode": 10245,
+                                "addr:street": "Gärtnerstraße",
+                                "name": "I Love Späti",
+                                "shop": "convenience",
+                                "icon": "marker",
+                                "description": "<strong>I Love Späti</strong><br/>Gärtnerstraße 33<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-So 00:00-24:00",
+
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4595583,
+                                    52.508469
+                                ]
+                            },
+                            "id": "node/4920773047"
+                        },
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/4931219961",
+                                "addr:housenumber": 26,
+                                "addr:postcode": 10247,
+                                "addr:street": "Niederbarnimstraße",
+                                "name": "Spiff 24",
+                                "shop": "convenience",
+                                "surveillance": "yes",
+                                "wheelchair": "yes",
+                                "icon": "marker",
+                                "description": "<strong>Spiff 24</strong><br/>Niederbarnimstraße 26<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-So 08:00-03:00",
+
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4600352,
+                                    52.5147244
+                                ]
+                            },
+                            "id": "node/4931219961"
+                        },
+
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "@id": "node/5503456919",
+                                "addr:city": "Berlin",
+                                "addr:country": "DE",
+                                "addr:postcode": 10247,
+                                "addr:street": "Rigaer Straße",
+                                "addr:suburb": "Friedrichshain",
+                                "name": "Trinkbar Spätkauf",
+                                "shop": "convenience",
+                                "icon": "marker",
+                                "description": "<strong>Trinkbar Spätkauf</strong><br/>Rigaer Straße<br/><strong>Öffnungszeiten:</strong>&nbsp;Mo-So 07:00-04:00",
+
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    13.4623235,
+                                    52.5167677
+                                ]
+                            },
+                        }]
+                    }
+                },
+                /* "layout": {
+                    "icon-image": "{icon}-15",
+                    "text-field": "{name}",
+                    "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                    "text-offset": [0, 0.6],
+                    "text-anchor": "top", */
+
+
+                
+            );
+
+console.log(spaetis.features[0].geometry);
+
+
+            map.on('click', 'places', function (e) {
+                var coordinates = e.features[0].geometry.coordinates.slice();
+                var description = e.features[0].properties.description;
+//console.log(coordinates);
+
+                // Verändert die sichtbarkeit der Marker beim zoomen.
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                }
+
+                new mapboxgl.Popup()
+                    .setLngLat(coordinates)
+                    .setHTML(description)
+                    .addTo(map);
+            });
+
+            // Ändert den Mauszeiger, wenn man sich über den Layern befindet.
+            map.on('mouseenter', 'places', function () {
+                map.getCanvas().style.cursor = 'pointer';
+                
+            });
+
+            // Ändert den Mauszeiger wenn man den Layer verlässt.
+            map.on('mouseleave', 'places', function () {
+                map.getCanvas().style.cursor = '';
+            });
+
+
+            unserStandortLayer.on('click', function (e){
+                unsereLongitude = e.lngLat.lng;
+                unsereLatitude = e.lngLat.lat;
+                console.log(unsereLatitude)
+                unserStandortLayer.features[0].pro
+                
+                
+
+
+                //console.log('hier' + unserStandortLayer.features[0].geometry.coordinates)
+                //console.log('Lat' + unserStandort.unsereLatitude)
+
+
+            });
+
+        ;
+
+    </script>
+
+</body>
+
+</html>
