@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script>L_PREFER_CANVAS=false; L_NO_TOUCH=false; L_DISABLE_3D=false;</script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.4.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.4.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+    <meta name="viewport" content="width=device-width,
+        initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>#map_17758a0da9cf430bb593379e5cc8c57f {
+        position: relative;
+        width: 100.0%;
+        height: 100.0%;
+        left: 0.0%;
+        top: 0.0%;
+        }
+    </style>
+</head>
+<body>    
+    
+    <div class="folium-map" id="map_17758a0da9cf430bb593379e5cc8c57f" ></div>
+</body>
+<script>    
+    
+    
+        var bounds = null;
+    
+
+    var map_17758a0da9cf430bb593379e5cc8c57f = L.map(
+        'map_17758a0da9cf430bb593379e5cc8c57f', {
+        center: [52.521918, 13.413215],
+        zoom: 2,
+        maxBounds: bounds,
+        layers: [],
+        worldCopyJump: false,
+        crs: L.CRS.EPSG3857,
+        zoomControl: true,
+        });
+
+
+    
+    var tile_layer_628182f260324ce4820e5fd5f4e5f4da = L.tileLayer(
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        {
+        "attribution": null,
+        "detectRetina": false,
+        "maxNativeZoom": 18,
+        "maxZoom": 18,
+        "minZoom": 0,
+        "noWrap": false,
+        "opacity": 1,
+        "subdomains": "abc",
+        "tms": false
+}).addTo(map_17758a0da9cf430bb593379e5cc8c57f);
+    
+            var feature_group_e646ea2829194e9182e3ee5c7e06446e = L.featureGroup(
+                ).addTo(map_17758a0da9cf430bb593379e5cc8c57f);
+        
+    
+            var circle_marker_c0fa0ead54464465a746033d083cd44a = L.circleMarker(
+                [33.866, -117.7276667],
+                {
+  "bubblingMouseEvents": true,
+  "color": "grey",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "green",
+  "fillOpacity": 0.6,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 3.1363920666666663,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(feature_group_e646ea2829194e9182e3ee5c7e06446e);
+            
+    
+            var popup_c9f53afbe7264c8d9cb11c6804a6d8c5 = L.popup({maxWidth: '100%'
+            
+            });
+
+            
+                var html_8c281d111a154070ac826bd1fafeffee = $(`<div id="html_8c281d111a154070ac826bd1fafeffee" style="width: 100.0%; height: 100.0%;">Magnitude: 3.61 Zeitpunkt: Wed Apr  3 14:06:22 2019</div>`)[0];
+                popup_c9f53afbe7264c8d9cb11c6804a6d8c5.setContent(html_8c281d111a154070ac826bd1fafeffee);
+            
+
+            circle_marker_c0fa0ead54464465a746033d083cd44a.bindPopup(popup_c9f53afbe7264c8d9cb11c6804a6d8c5)
+            ;
+
+            
+        
+    
+        circle_marker_c0fa0ead54464465a746033d083cd44a.bindTooltip(
+            `<div>`
+            + `8km ESE of Yorba Linda, CA` + `</div>`,
+            {"sticky": true}
+        );
+        
+    
+            var circle_marker_66ca8ece038a436e817e087d2b226cc6 = L.circleMarker(
+                [52.2131, 178.0196],
+                {
+  "bubblingMouseEvents": true,
+  "color": "grey",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "#FF0000",
+  "fillOpacity": 0.6,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 18.308333333333334,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(feature_group_e646ea2829194e9182e3ee5c7e06446e);
+            
+    
+            var popup_68e3609f6daa483b93f774917f070063 = L.popup({maxWidth: '100%'
+            
+            });
+
+            
+                var html_1e16233636c74a659eeb2979c4181c76 = $(`<div id="html_1e16233636c74a659eeb2979c4181c76" style="width: 100.0%; height: 100.0%;">Magnitude: 6.5 Zeitpunkt: Tue Apr  2 23:35:32 2019</div>`)[0];
+                popup_68e3609f6daa483b93f774917f070063.setContent(html_1e16233636c74a659eeb2979c4181c76);
+            
+
+            circle_marker_66ca8ece038a436e817e087d2b226cc6.bindPopup(popup_68e3609f6daa483b93f774917f070063)
+            ;
+
+            
+        
+    
+        circle_marker_66ca8ece038a436e817e087d2b226cc6.bindTooltip(
+            `<div>`
+            + `31km ENE of Kiska Volcano, Alaska` + `</div>`,
+            {"sticky": true}
+        );
+        
+    
+            var circle_marker_995b296cc8074e6f83648025cf961fd2 = L.circleMarker(
+                [-1.9858, -80.8081],
+                {
+  "bubblingMouseEvents": true,
+  "color": "grey",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "#FF0000",
+  "fillOpacity": 0.6,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 15.888533333333335,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(feature_group_e646ea2829194e9182e3ee5c7e06446e);
+            
+    
+            var popup_d597e9f891204efea4feac2de4381515 = L.popup({maxWidth: '100%'
+            
+            });
+
+            
+                var html_4593e619cebb4333a161e8c6d89abf07 = $(`<div id="html_4593e619cebb4333a161e8c6d89abf07" style="width: 100.0%; height: 100.0%;">Magnitude: 6.2 Zeitpunkt: Sun Mar 31 09:04:04 2019</div>`)[0];
+                popup_d597e9f891204efea4feac2de4381515.setContent(html_4593e619cebb4333a161e8c6d89abf07);
+            
+
+            circle_marker_995b296cc8074e6f83648025cf961fd2.bindPopup(popup_d597e9f891204efea4feac2de4381515)
+            ;
+
+            
+        
+    
+        circle_marker_995b296cc8074e6f83648025cf961fd2.bindTooltip(
+            `<div>`
+            + `27km N of Santa Elena, Ecuador` + `</div>`,
+            {"sticky": true}
+        );
+        
+    
+            var circle_marker_0993a8b1dcb1479084f17c96dddef4d4 = L.circleMarker(
+                [4.5629, -76.2231],
+                {
+  "bubblingMouseEvents": true,
+  "color": "grey",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "#FF0000",
+  "fillOpacity": 0.6,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 15.132066666666665,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(feature_group_e646ea2829194e9182e3ee5c7e06446e);
+            
+    
+            var popup_3062935304ef432fa142449ec7ffdc1a = L.popup({maxWidth: '100%'
+            
+            });
+
+            
+                var html_2f963f79229e44f1a0c229b5a9759c92 = $(`<div id="html_2f963f79229e44f1a0c229b5a9759c92" style="width: 100.0%; height: 100.0%;">Magnitude: 6.1 Zeitpunkt: Sat Mar 23 20:21:18 2019</div>`)[0];
+                popup_3062935304ef432fa142449ec7ffdc1a.setContent(html_2f963f79229e44f1a0c229b5a9759c92);
+            
+
+            circle_marker_0993a8b1dcb1479084f17c96dddef4d4.bindPopup(popup_3062935304ef432fa142449ec7ffdc1a)
+            ;
+
+            
+        
+    
+        circle_marker_0993a8b1dcb1479084f17c96dddef4d4.bindTooltip(
+            `<div>`
+            + `3km WSW of Versalles, Colombia` + `</div>`,
+            {"sticky": true}
+        );
+        
+    
+            var circle_marker_bb2ad0b90dc04db4b8ccac072d2015bd = L.circleMarker(
+                [-15.5965, 167.6551],
+                {
+  "bubblingMouseEvents": true,
+  "color": "grey",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "#FF0000",
+  "fillOpacity": 0.6,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 16.6698,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(feature_group_e646ea2829194e9182e3ee5c7e06446e);
+            
+    
+            var popup_2da1bfac9ade4f03a1227225da728e3b = L.popup({maxWidth: '100%'
+            
+            });
+
+            
+                var html_e272632f9dd34d9e9ece7b22f0ed1a7f = $(`<div id="html_e272632f9dd34d9e9ece7b22f0ed1a7f" style="width: 100.0%; height: 100.0%;">Magnitude: 6.3 Zeitpunkt: Wed Mar 20 16:23:58 2019</div>`)[0];
+                popup_2da1bfac9ade4f03a1227225da728e3b.setContent(html_e272632f9dd34d9e9ece7b22f0ed1a7f);
+            
+
+            circle_marker_bb2ad0b90dc04db4b8ccac072d2015bd.bindPopup(popup_2da1bfac9ade4f03a1227225da728e3b)
+            ;
+
+            
+        
+    
+        circle_marker_bb2ad0b90dc04db4b8ccac072d2015bd.bindTooltip(
+            `<div>`
+            + `52km E of Luganville, Vanuatu` + `</div>`,
+            {"sticky": true}
+        );
+        
+    
+            var circle_marker_25845345e09640e6bba5a3d70a475479 = L.circleMarker(
+                [-17.8571, -65.8913],
+                {
+  "bubblingMouseEvents": true,
+  "color": "grey",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "#FF0000",
+  "fillOpacity": 0.6,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 16.6698,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(feature_group_e646ea2829194e9182e3ee5c7e06446e);
+            
+    
+            var popup_dd7c67d760f24b3ca9fe24c99e992f37 = L.popup({maxWidth: '100%'
+            
+            });
+
+            
+                var html_c968f5606acb4cc0b1173476bc496962 = $(`<div id="html_c968f5606acb4cc0b1173476bc496962" style="width: 100.0%; height: 100.0%;">Magnitude: 6.3 Zeitpunkt: Fri Mar 15 06:03:50 2019</div>`)[0];
+                popup_dd7c67d760f24b3ca9fe24c99e992f37.setContent(html_c968f5606acb4cc0b1173476bc496962);
+            
+
+            circle_marker_25845345e09640e6bba5a3d70a475479.bindPopup(popup_dd7c67d760f24b3ca9fe24c99e992f37)
+            ;
+
+            
+        
+    
+        circle_marker_25845345e09640e6bba5a3d70a475479.bindTooltip(
+            `<div>`
+            + `28km S of Cliza, Bolivia` + `</div>`,
+            {"sticky": true}
+        );
+        
+    
+            var circle_marker_63eedae5f9fb4404b85f7e1d5f3170bc = L.circleMarker(
+                [19.3258333, -155.2005],
+                {
+  "bubblingMouseEvents": true,
+  "color": "grey",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "yellow",
+  "fillOpacity": 0.6,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 11.335430933333333,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(feature_group_e646ea2829194e9182e3ee5c7e06446e);
+            
+    
+            var popup_b538cf7ec0ad482dbf55ac295fe1d65e = L.popup({maxWidth: '100%'
+            
+            });
+
+            
+                var html_35f858bfd2a84249a582710678c3350b = $(`<div id="html_35f858bfd2a84249a582710678c3350b" style="width: 100.0%; height: 100.0%;">Magnitude: 5.54 Zeitpunkt: Wed Mar 13 11:55:13 2019</div>`)[0];
+                popup_b538cf7ec0ad482dbf55ac295fe1d65e.setContent(html_35f858bfd2a84249a582710678c3350b);
+            
+
+            circle_marker_63eedae5f9fb4404b85f7e1d5f3170bc.bindPopup(popup_b538cf7ec0ad482dbf55ac295fe1d65e)
+            ;
+
+            
+        
+    
+        circle_marker_63eedae5f9fb4404b85f7e1d5f3170bc.bindTooltip(
+            `<div>`
+            + `12km SSE of Volcano, Hawaii` + `</div>`,
+            {"sticky": true}
+        );
+        
+    
+            var circle_marker_18bbc45bee98480ebaafaac9c1cd563f = L.circleMarker(
+                [-32.0238, -177.8845],
+                {
+  "bubblingMouseEvents": true,
+  "color": "grey",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "#FF0000",
+  "fillOpacity": 0.6,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 17.47626666666667,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(feature_group_e646ea2829194e9182e3ee5c7e06446e);
+            
+    
+            var popup_1716464bbed040ab83e2bdfcbd51e05a = L.popup({maxWidth: '100%'
+            
+            });
+
+            
+                var html_5d9b342bdb1848219ed0308c6f0f01c2 = $(`<div id="html_5d9b342bdb1848219ed0308c6f0f01c2" style="width: 100.0%; height: 100.0%;">Magnitude: 6.4 Zeitpunkt: Wed Mar  6 16:46:14 2019</div>`)[0];
+                popup_1716464bbed040ab83e2bdfcbd51e05a.setContent(html_5d9b342bdb1848219ed0308c6f0f01c2);
+            
+
+            circle_marker_18bbc45bee98480ebaafaac9c1cd563f.bindPopup(popup_1716464bbed040ab83e2bdfcbd51e05a)
+            ;
+
+            
+        
+    
+        circle_marker_18bbc45bee98480ebaafaac9c1cd563f.bindTooltip(
+            `<div>`
+            + `116km SE of L'Esperance Rock, New Zealand` + `</div>`,
+            {"sticky": true}
+        );
+        
+    
+            var circle_marker_d819537f8bf5438583c4fe47828f9180 = L.circleMarker(
+                [36.2955, -83.7356667],
+                {
+  "bubblingMouseEvents": true,
+  "color": "grey",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "green",
+  "fillOpacity": 0.6,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 2.5515168666666668,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(feature_group_e646ea2829194e9182e3ee5c7e06446e);
+            
+    
+            var popup_161ee2cee0b647258e0fa5cdebc06b40 = L.popup({maxWidth: '100%'
+            
+            });
+
+            
+                var html_0da6507182eb42009356e2d24aba8f9c = $(`<div id="html_0da6507182eb42009356e2d24aba8f9c" style="width: 100.0%; height: 100.0%;">Magnitude: 3.37 Zeitpunkt: Tue Mar  5 21:56:02 2019</div>`)[0];
+                popup_161ee2cee0b647258e0fa5cdebc06b40.setContent(html_0da6507182eb42009356e2d24aba8f9c);
+            
+
+            circle_marker_d819537f8bf5438583c4fe47828f9180.bindPopup(popup_161ee2cee0b647258e0fa5cdebc06b40)
+            ;
+
+            
+        
+    
+        circle_marker_d819537f8bf5438583c4fe47828f9180.bindTooltip(
+            `<div>`
+            + `7km NE of Maynardville, Tennessee` + `</div>`,
+            {"sticky": true}
+        );
+        
+</script>
